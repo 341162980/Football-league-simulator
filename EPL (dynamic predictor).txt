@@ -1,0 +1,45 @@
+The "EPL (dynamic predictor).py" file predicts the 2025-2026 premier league 
+season using both factors from before the season and during the season. 
+As the name suggests, it can make dynamic predictions at any time of the 
+year so its predictions change as the season progresses. 
+
+This file does require an API key from https://api.football-data.org as 
+there are functions that retrieve live data from the site. You can get 
+your own api key by making an account for free. Then, add it as a string 
+between '' under the variable "API_TOKEN.
+
+This predictor will use preseason odds, current league record and recent 
+form (last 5 games record) as deciding factors. Both league record and 
+recent form are factors that occur during the season so if the prediction
+is made before the season begins, these will have no influence at all 
+whereas later in the season, these 2 factor will have far more influence 
+than betting odds made before the season starts. 
+
+To begin this project, I needed to use all 3 factors and convert them 
+so that each factor would play a role in deciding how likely it is for a 
+team to win in one match against another team. 
+
+The first factor was preseason odds. These odds are manually added in from 
+bet365 so they may be different now from the time they were added in. 
+Using these odds, I gave each team a strength rating and used their strength 
+ratings to determine probabilities for how a match will end between any 2 
+sides. For a more detailed explanation for this factor, check out the 
+text file for the preseason prediction file. 
+
+The second factor is a team's current league record (how well they are 
+performing this season). This factor has a high influence as the season 
+continues and calculates each team's win, draw and loss probabilities. 
+
+The third factor takes each team's recent form from the last 5 games 
+and uses that to calculate a team's win, draw and loss probabilities. 
+This factor has a  small influence because form can change at any time but
+sometimes, teams will achieve the same match results over a number of games. 
+
+After all 3 factors have their probabilities calculated, they are each 
+given a weight for how much influence they have and final match 
+probabilities are calculated. Then, using these final probabilities, 
+we can simulate each game by randomly choosing a result based on those 
+probabilities. Once every game that's not been played yet is simulated, 
+than we have a final league table. 
+
+

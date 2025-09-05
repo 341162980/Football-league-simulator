@@ -1,0 +1,65 @@
+The "EPL(preseason prediction).py" file makes a prediction on what the 
+2025-2026 premier league table will look like at the end of the season. 
+This version uses betting odds of who's going to win the league from 
+bet365 and also incorporates the teams' home and away records from 
+last season. 
+
+This particular file will not require an API key although there are individual
+functions (that aren't called) within the file that need it as they were used 
+to extract data from the website (https://api.football-data.org). If you are 
+interested in using some of these functions, then you can head to this 
+site and sign up for free to receive your own API key and input it as a 
+string between '' under the variable "API_TOKEN"
+
+I started this project by making a dictionary containing all teams and their 
+odds. This part was done manually so the odds online now may differ
+from what it was before. 
+
+Using the odds, I converted them into probabilities of how likely
+each team will win. Using the probabilities, I then gave each team a 
+strength rating which will help later simulate the match results
+
+The strength ratings are obtained by dividing each team's probability of 
+winning the league by the team with the highest probability. Now, the 
+probabilities that were originally calculated were slightly offset from 
+their initial values. Through manual experimentation, leaving the original
+probabilities as is gives the teams with higher odds too much of an 
+advantage (more than what is normal). So each team's probability was 
+offset by a power of 0.25 to make the strength ratings more realistic. 
+
+Next, based on these strength ratings, we use them to calculate the result
+of any match between 2 teams. This is done using some probability 
+calculations which calculates a strength ratio from one of the teams. The
+strength ratio is a team's probability of not losing. We also calculate a 
+special draw probability using the formula:
+ 'draw_prob = 0.4 - abs(strength_ratio - 0.5)'
+
+For certain leagues, as many as 40% of games can end in a draw so we use
+0.4 that as a high benchmark. We subtract the strength ratio by 0.5 
+because if 2 teams were perfectly balanced, then they would have a 
+strength ratio of 0.5. Then, we subtract the absolute value of the difference 
+from 0.4. This calculation ensures that teams with similar strengths will 
+have a higher chance of drawing. 
+
+So now, we have the probabilities of the match outcome based on the preseason
+odds. But I also wanted to incorporate each team's home and away records as 
+a smaller deciding factor for match outcomes. 
+
+So I used a couple functions to help retrieve data on every team's home and 
+away records from last season. I manually put all the data from the outputs 
+of the functions in a dictionary because the website has a limit for how many 
+requests I can make per minute. 
+
+Now, I have the probabilities from the preseason odds and the 
+probabilities from the team's home and away records from last season. 
+Using these 2, I can now calculate the probabilities of how a game between 
+2 teams will result. The probabilities from the preseason odds will have 
+a weight of 75% and the probabilities of the home and away records from 
+last season will have a 25% weight. This is because teams' strengths may 
+be very different based on changes made over the summer. In addition, 
+newly promoted teams will not have any home and away records from last season
+so games involving newly promoted teams will be completely decided via 
+the preseason odds. 
+
+Now, that I can simulate a game between any 2 teams, I simply simulate 
+all games in a season and return it in a pop up graphic. 
