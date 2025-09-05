@@ -4,6 +4,10 @@ This version uses betting odds of who's going to win the league from
 bet365 and also incorporates the teams' home and away records from 
 last season. 
 
+To run the file yourself, download all files as a zip on github. Open up 
+the folder on VS code and then run the "EPL(preseason prediction).py" file 
+in the terminal. 
+
 This particular file will not require an API key although there are individual
 functions (that aren't called) within the file that need it as they were used 
 to extract data from the website (https://api.football-data.org). If you are 

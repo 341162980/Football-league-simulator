@@ -3,10 +3,12 @@ season using both factors from before the season and during the season.
 As the name suggests, it can make dynamic predictions at any time of the 
 year so its predictions change as the season progresses. 
 
-This file does require an API key from https://api.football-data.org as 
-there are functions that retrieve live data from the site. You can get 
-your own api key by making an account for free. Then, add it as a string 
-between '' under the variable "API_TOKEN.
+To run the file yourself, download all files as a zip on github. Open the folder 
+up on VS code. Then, open up the "EPL (dynamic predictor).py" file. 
+This file does require an API key from https://api.football-data.org as there are 
+functions that retrieve live data from the site. You can get your own api key by 
+making an account for free. Then, add it as a string between '' under the variable 
+"API_TOKEN". Finally, run the python file in the terminal to get a prediction. 
 
 This predictor will use preseason odds, current league record and recent 
 form (last 5 games record) as deciding factors. Both league record and 
